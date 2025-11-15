@@ -1,0 +1,103 @@
+{
+  "name": "send message gmail",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "9dc8aef3-e6ce-4f64-a586-3172bc37d34c",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "sendTo": "me.akhter@gmail.com",
+        "subject": "Test Email",
+        "message": "Hello there?",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "f5837482-9e8c-45bb-b727-47badc09dfa0",
+      "name": "Send a message",
+      "webhookId": "53361b66-2732-449e-9c42-0570be21e9eb",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "egPH9k4OecYuLlmp",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        416,
+        0
+      ],
+      "id": "2b1d34fd-3502-443b-9398-45f2ac0be46b",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "s9BaNQuuYfbzrnGW",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "672d3e34-b092-4fc9-9c16-94be1d1b009a",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "aeca3eb030a6587b4eee88279d2f1c905e18e4fec46d038825474b7e61a29720"
+  },
+  "id": "8mMLKeITMvzGOxhV",
+  "tags": []
+}
